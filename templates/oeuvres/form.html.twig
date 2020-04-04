@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% form_theme formOeuvres 'bootstrap_4_layout.html.twig' %}
+
+
+
+{% block title %} Formulaire de création d'une oeuvre {% endblock %}
+
+{% block body %}
+
+    <h1> Ajout d'une oeuvre </h1>
+
+    {{ form_start(formOeuvres) }}
+
+    {{ form_row(formOeuvres.nom, {'attr': {'placeholder':
+        "Nom de l'oeuvre"}})}}
+    {{ form_row(formOeuvres.description, {'attr': {'placeholder':
+        "Description de l'oeuvre"}})}}
+    {{ form_row(formOeuvres.date_creation)}}
+
+    <button type="submit" class="btn btn-success">
+        Enregistrer l'oeuvre
+    </button>
+
+    {{ form_end(formOeuvres) }}
+
+
+{% endblock %}

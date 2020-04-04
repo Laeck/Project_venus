@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OeuvresController!{% endblock %}
+
+{% block body %}
+
+    <section class="oeuvres">
+
+        {% for oeuvre in oeuvres %}
+        <article>
+            <h2> {{ oeuvre.nom }} </h2>
+                <img src="http://placehold.it/350x150" alt="">
+                <div class="metadata"> {{ oeuvre.description | raw}}
+                </div>
+                <p> crée le {{ oeuvre.datecreation | date('d/m/Y') }} </p>
+
+        </article>
+        {% endfor %}
+
+    </section>
+
+{% endblock %}
