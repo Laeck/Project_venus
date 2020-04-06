@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -42,6 +44,22 @@ class Oeuvres
      */
     private $date_creation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categories", inversedBy="oeuvres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categories;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="oeuvre")
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -79,6 +97,49 @@ class Oeuvres
     public function setDateCreation(?\DateTimeInterface $date_creation): self
     {
         $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+    public function getCategories(): ?Categories
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Categories $categories): self
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setOeuvre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getOeuvre() === $this) {
+                $image->setOeuvre(null);
+            }
+        }
 
         return $this;
     }

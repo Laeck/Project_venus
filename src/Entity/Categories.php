@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class Categories
      * @ORM\Column(type="boolean")
      */
     private $page_accueil;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Oeuvres", mappedBy="categories")
+     */
+    private $oeuvres;
+
+    public function __construct()
+    {
+        $this->oeuvres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,6 +80,37 @@ class Categories
     public function setPageAccueil(bool $page_accueil): self
     {
         $this->page_accueil = $page_accueil;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Oeuvres[]
+     */
+    public function getOeuvres(): Collection
+    {
+        return $this->oeuvres;
+    }
+
+    public function addOeuvre(Oeuvres $oeuvre): self
+    {
+        if (!$this->oeuvres->contains($oeuvre)) {
+            $this->oeuvres[] = $oeuvre;
+            $oeuvre->setCategories($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOeuvre(Oeuvres $oeuvre): self
+    {
+        if ($this->oeuvres->contains($oeuvre)) {
+            $this->oeuvres->removeElement($oeuvre);
+            // set the owning side to null (unless already changed)
+            if ($oeuvre->getCategories() === $this) {
+                $oeuvre->setCategories(null);
+            }
+        }
 
         return $this;
     }

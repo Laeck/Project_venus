@@ -55,17 +55,58 @@ class OeuvresController extends AbstractController
         
     }
     
-    public function oeuvresCategorie()
+    /**
+     * @Route("/oeuvres/{id}", name="oeuvre_show")
+     */
+    public function oeuvreShow($id)
     {
+        $em = $this->getDoctrine();
+        
+        $oeuvre = $em->getRepository(Oeuvres::class)->find($id);
 
+        if (!$oeuvre) {
+            throw $this->createNotFoundException(
+                'L\oeuvre séléctionnée n\'a pas été trouvée pas l\id : '.$id
+            );
+        }
+
+        return $this->render('oeuvres/show.html.twig', ['oeuvre' => $oeuvre]);
     }
+
+
+    /**
+     * @Route("/oeuvres/edit/{id}")
+     */
+    public function updateUser($id)
+    {
+        // ETAPE 1: Récuperer l'entitymanager et récuperer l'objet sur lequel on veut travailler
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $oeuvre = $entityManager->getRepository(Oeuvres::class)->find($id);
+
+        // ETAPE 2 : Verification si l'ID appartient bien a un Oeuvre
+        if (!$oeuvre) {
+            throw $this->createNotFoundException(
+                'Pas d\'oeuvre pour cet '.$id
+            );
+        }
+
+        // ETAPE 3 : Modifier les champs que l'on souhaite et on persiste en bdd avec flush()
+        $oeuvre->setNom('Orion');
+        $oeuvre->setDescription('La préférée de Mika');
+        $entityManager->flush();
+
+        // ETAPE 4 : On envoie vers la vue
+        return $this->redirectToRoute('oeuvre_show', [
+            'id' => $oeuvre->getId()
+        ]);
+    }  
 
     /**
      * @Route("/oeuvres", name="oeuvres")
      */
-    public function index(OeuvresRepository $repo)
+    public function oeuvresAll(OeuvresRepository $repo)
     {
-
 
         $oeuvres = $repo->findAll();
 
@@ -73,6 +114,30 @@ class OeuvresController extends AbstractController
             'controller_name' => 'OeuvresController',
             'oeuvres' => $oeuvres
         ]);
+    }
+
+    /**
+     * @Route("/oeuvres/delete/{id}")
+     */
+    public function oeuvreDelete($id)
+    {
+        // ETAPE 1: Récuperer l'entitymanager et récuperer l'objet sur lequel on veut travailler
+        $entityManager = $this->getDoctrine()->getManager();
+        $oeuvre = $entityManager->getRepository(Oeuvres::class)->find($id);
+
+        // ETAPE 2 : Verification si l'ID appartient bien a un USER
+        if (!$oeuvre) {
+            throw $this->createNotFoundException(
+                'Pas d\'oeuvre pour cet id '.$id
+            );
+        }
+
+        // ETAPE 3 : On supprime et on persiste en bdd avec flush()
+        $entityManager->remove($oeuvre);
+        $entityManager->flush();
+
+        // ETAPE 4 : On envoie vers la vue
+        return $this->render('oeuvres/deleted.html.twig',  ['oeuvre' => $oeuvre]);
     }
 
 }
