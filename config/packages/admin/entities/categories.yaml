@@ -1,0 +1,13 @@
+easy_admin:
+  entities:
+    Categories:
+        class : App\Entity\Categories
+        form:
+              fields:
+                  - {property: 'nom'}
+                  - {property: 'description'}
+                  - {property: 'page_accueil'}
+        list:
+          actions:
+            - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-info'}
+            - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
