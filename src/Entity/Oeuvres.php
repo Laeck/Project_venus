@@ -2,16 +2,18 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OeuvresRepository")
+ * @Vich\Uploadable()
  */
 class Oeuvres
 {
@@ -21,6 +23,18 @@ class Oeuvres
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    // /**
+    //  * @var string|null
+    //  *@ORM\Column(type="string", length=255)
+    //  */
+    // private $filename;
+
+    // /**
+    //  * @var File|null;
+    //  * @Vich\UploadableField(mapping="oeuvre_image", fileNameProperty="filename")
+    //  */
+    // private $imageFile;
 
     /**
     * @ORM\Column(type="string", length=80)
@@ -148,4 +162,40 @@ class Oeuvres
     {
         return $this->nom;
     }
+
+    // /**
+    //  * @return null|string
+    //  */
+    // public function getFilename(): ?string
+    // {
+    //     return $this->filename;
+    // }
+
+    // /**
+    //  * @param null|string $filename
+    //  * @return Oeuvres
+    //  */
+    // public function setFilename(?string $filename): Oeuvres
+    // {
+    //     $this->filename = $filename;
+    //     return $this;
+    // }
+
+    // /**
+    //  * @return null|File
+    //  */
+    // public function getImageFile(): ?File
+    // {
+    //     return $this->imageFile;
+    // }
+
+    // /**
+    //  * @param null|File $imageFile
+    //  * @return Oeuvres
+    //  */
+    // public function setImageFile(?File $imageFile): Oeuvres
+    // {
+    //     $this->imageFile = $imageFile;
+    //     return $this;
+    // }
 }

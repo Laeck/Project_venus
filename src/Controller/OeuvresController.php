@@ -12,7 +12,6 @@ use App\Repository\OeuvresRepository ;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class OeuvresController extends AbstractController
 {
 
