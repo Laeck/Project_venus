@@ -5,14 +5,15 @@
     {% block entity_form %}
     
         {{ form_start(form) }}
-        <div class="row">
-            <div class="col-sm-4">
+
             {{ form_row(form.nom) }}
-        </div>
-        <div class="col-sm-4">
+
             {{ form_row(form.description) }}
-            </div>
-        </div>
+
+            {{ form_row(form.imageName) }}
+
+            {{ form_row(form.date_maj) }}
+
 
         {{ form_end(form) }}
         

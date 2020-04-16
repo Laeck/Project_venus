@@ -24,17 +24,18 @@ class Oeuvres
      */
     private $id;
 
-    // /**
-    //  * @var string|null
-    //  *@ORM\Column(type="string", length=255)
-    //  */
-    // private $filename;
 
-    // /**
-    //  * @var File|null;
-    //  * @Vich\UploadableField(mapping="oeuvre_image", fileNameProperty="filename")
-    //  */
-    // private $imageFile;
+    /**
+     * @Vich\UploadableField(mapping="oeuvres_image", fileNameProperty="imageName")
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string|null
+     */
+    private $imageName;
 
     /**
     * @ORM\Column(type="string", length=80)
@@ -68,6 +69,12 @@ class Oeuvres
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="oeuvre")
      */
     private $images;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime|null
+     */
+    private $date_maj;
 
     public function __construct()
     {
@@ -163,39 +170,45 @@ class Oeuvres
         return $this->nom;
     }
 
-    // /**
-    //  * @return null|string
-    //  */
-    // public function getFilename(): ?string
-    // {
-    //     return $this->filename;
-    // }
 
-    // /**
-    //  * @param null|string $filename
-    //  * @return Oeuvres
-    //  */
-    // public function setFilename(?string $filename): Oeuvres
-    // {
-    //     $this->filename = $filename;
-    //     return $this;
-    // }
+    public function getDateMaj(): ?\DateTimeInterface
+    {
+        return $this->date_maj;
+    }
 
-    // /**
-    //  * @return null|File
-    //  */
-    // public function getImageFile(): ?File
-    // {
-    //     return $this->imageFile;
-    // }
+    public function setDateMaj(?\DateTimeInterface $date_maj): self
+    {
+        $this->date_maj = $date_maj;
 
-    // /**
-    //  * @param null|File $imageFile
-    //  * @return Oeuvres
-    //  */
-    // public function setImageFile(?File $imageFile): Oeuvres
-    // {
-    //     $this->imageFile = $imageFile;
-    //     return $this;
-    // }
+        return $this;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     */
+    public function setImageFile(File $imageName = null)
+    {
+        $this->imageFile = $imageName;
+
+        if ($imageName) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName)
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+    
+
 }

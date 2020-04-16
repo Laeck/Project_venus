@@ -16,14 +16,6 @@ class OeuvresController extends AbstractController
 {
 
     /**
-     * @Route("/", name="accueil_site")
-     */
-    public function accueil() 
-    {
-        return $this->render('oeuvres/accueil.html.twig');
-    }
-
-    /**
      * @Route("/oeuvres/creation", name="oeuvres_creation")
      */
     public function formOeuvres(Request $request): Response

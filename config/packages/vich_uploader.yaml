@@ -2,10 +2,16 @@ vich_uploader:
     db_driver: orm
 
     mappings:
-        oeuvre_image:
-        # dossier envoi des images
-            uri_prefix: /images/oeuvres
-            upload_destination: '%kernel.project_dir%/public/images/oeuvres'
+        oeuvres_image:
+        # dossier dans lequel on envoi les images
+            uri_prefix: /'%app.path.oeuvres_images%'
+        # Ou l'on souhaite envoyer les différents fichiers
+            upload_destination: '%kernel.project_dir%/public%app.path.oeuvres_images%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
 
     #mappings:
     #    products:
