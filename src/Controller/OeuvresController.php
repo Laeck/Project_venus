@@ -131,4 +131,17 @@ class OeuvresController extends AbstractController
         return $this->render('oeuvres/deleted.html.twig',  ['oeuvre' => $oeuvre]);
     }
 
+    /**
+     * @Route("/oeuvres/categories/{id}", name="galerie_categorie")
+     */
+    public function oeuvresByCategoryId ($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $oeuvres = $entityManager->getRepository(Oeuvres::class)->findBy( array(
+            'categories' => $id
+        ));
+
+        return $this->render('oeuvres/categories.html.twig',
+        ['oeuvres' => $oeuvres]);
+    }
 }

@@ -4,16 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\HttpFoundation\File\File;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OeuvresRepository")
- * @Vich\Uploadable()
  */
 class Oeuvres
 {
@@ -24,18 +21,6 @@ class Oeuvres
      */
     private $id;
 
-
-    /**
-     * @Vich\UploadableField(mapping="oeuvres_image", fileNameProperty="imageName")
-     * @var File|null
-     */
-    private $imageFile;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @var string|null
-     */
-    private $imageName;
 
     /**
     * @ORM\Column(type="string", length=80)
@@ -183,32 +168,5 @@ class Oeuvres
         return $this;
     }
 
-    /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
-     */
-    public function setImageFile(File $imageName = null)
-    {
-        $this->imageFile = $imageName;
-
-        if ($imageName) {
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-
-    public function setImageName(?string $imageName)
-    {
-        $this->imageName = $imageName;
-    }
-
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-    
 
 }

@@ -2,18 +2,18 @@ easy_admin:
   entities:
     Oeuvres:
         class : App\Entity\Oeuvres
+        form:
+          fields: 
+            - {property: 'nom'}
+            - {property: 'description'}
+            - {property: 'date_creation'}
+            - {property: 'categories'}
+            - {property: 'images'}
         templates:
           edit: 'admin/oeuvres/edit.html.twig'
         list:
           actions:
             - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-info'}
             - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
-          fields:
-            - { property: 'imageName', type: 'image', base_path: '%app.path.oeuvres_images%' }
-        form:
-          fields:
-            - { property: 'imageFile', type: 'vich_image' }
-        show:
-          fields:
-            - { property: 'imageName', type: 'image', base_path: '%app.path.oeuvres_images%' }
+
 

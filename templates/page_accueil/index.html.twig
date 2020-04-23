@@ -3,26 +3,43 @@
 {% block title 'Serge BEQUET artiste sculpteur' %}
 
 {% block body %}
-    <div class="container txt-center">
-            <h1> Page d'accueil </h1>
-    </div>
+
+{# Partie artiste #}
+<main class="col-12 container-fluid row text-justify">
+    <h2 class="col-12 mb-3 text-center">L'artiste</h2>
+    <p class="col-12 offset-md-2 col-md-4 mb-5">Ut enim quisque sibi plurimum confidit et ut quisque maxime virtute
+        et sapientia sic munitus est, ut nullo egeat suaque omnia in se ipso posita iudicet, ita in amicitiis
+        expetendis colendisque maxime excellit. Quid enim? Africanus indigens mei? Minime hercule! ac ne ego
+        quidem illius; sed ego admiratione quadam virtutis eius, ille vicissim opinione fortasse non nulla,
+        quam de meis moribus habebat, me dilexit; auxit benevolentiam consuetudo. Sed quamquam utilitates multae
+    </p>
+
+    <p class="col-12 col-md-4 mb-5">Cum haec taliaque sollicitas eius aures everberarent expositas semper eius modi
+        rumoribus et patentes, varia animo tum miscente consilia, tandem id ut optimum factu elegit: et
+        Vrsicinum
+        primum
+        ad se venire summo cum honore mandavit ea specie ut pro rerum tunc urgentium captu disponeretur concordi
+        consilio,
+        us virium incrementis Parthicarum gentium a arma minantium impetus frangerentur.
+    </p>
+</main>
 
 
-<div class="album py-5 bg-light">
+{# Partie galerie #}
+<div class="album py-5">
     <div class="container">
         <div class="row">
             {% for categorie in categories %}
             <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                    <img src="{{ asset('build/images/' ~ categorie.image) }}" alt="{{ categorie.nom }}" width="400" />
                     <div class="card-body">
                     <h4> {{ categorie.nom }} </h4>
                     <p class="card-text"> {{ categorie.description }} </p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <a href="{{ path('galerie_categorie', {'id': categorie.id }) }}"> Accédez à la galerie {{ categorie.nom }}</a>
                         </div>
-                        <small class="text-muted">9 mins</small>
                     </div>
                     </div>
                 </div>
@@ -33,6 +50,18 @@
     </div>
 </div>
 
+{# Partie exposition #}
+<div class="card offset-md-2 col-md-8 offset-md-2 offset-lx-3 col-lx-6 offset-lx-3 mb-5"
+    id="card-expo-container">
+    <div class="card-body" id="card-expo">
+        <h2 class="card-title txt-center">Mes dernieres expositions</h2>
+        <p class="card-text txt-center">Je vous invite à découvrir ses lieux dans lesquels j'ai eu la chance
+            d'exposer mes oeuvres</p>
+    </div>
+    <div class="card-expo">
+        <img src="{{ asset('build/images/expo.png') }}" />
+    </div>
+</div>
 
 {% endblock %}
 

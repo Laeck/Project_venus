@@ -1,0 +1,29 @@
+@import "~bootstrap/scss/bootstrap";
+
+/* Card */
+.card 
+{
+    align-items: center;
+}
+
+h1, h2, p
+{
+    color:#595959;
+}
+
+main
+{
+    background-image: url('../images/background.jpg');
+}
+
+.album
+{
+    background-color: #F2F2F2;
+}
+
+footer
+{
+    background-color: #303030;
+    color: silver;
+    padding: 1.5rem;
+}

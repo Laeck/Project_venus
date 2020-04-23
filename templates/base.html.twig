@@ -9,7 +9,8 @@
         {% endblock %}
     </head>
     <body>
-
+    <header>
+    
         {# NAVBAR #}
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
             <!-- Brand -->
@@ -64,22 +65,24 @@
                             Contact
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="{{ path('oeuvres_creation') }}">
-                            Créer un article
-                        </a>
-                    </li>
                 </ul>
             </div>
         </nav>
-        
-        <div class="container">
-            {% block body %}{% endblock %}
-        </div>
-        
+    </header>
+
+        {% block body %}{% endblock %}
+    
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            
+        <noscript>
+            Votre navigateur ne prends pas en charge ou a désactivé JavaScript.
+        </noscript>
         {% endblock %}
+
+        <!-- Footer  -->
+        <footer class="text-center">© 2020 Serge BEQUET-Sculpteur. Tous droits réservés.</footer>
+
     </body>
 
 </html>

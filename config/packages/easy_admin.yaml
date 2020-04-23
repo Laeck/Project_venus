@@ -1,17 +1,2 @@
 imports:
   - {resource: admin/}
-easy_admin:
-  entities:
-    oeuvres:
-      class: App\Entity\Oeuvres
-      list:
-        fields:
-          - { property: 'imageName', type: 'image', base_path: '%app.path.oeuvres_images%' }
-      form:
-        fields:
-          - { property: 'imageFile', type: 'vich_image' }
-      show:
-        fields:
-          - { property: 'imageName', type: 'image', base_path: '%app.path.oeuvres_images%' }
-    categories:
-      class: App\Entity\Categories

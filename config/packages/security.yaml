@@ -1,7 +1,6 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
@@ -13,7 +12,7 @@ security:
         main:   
             anonymous: true
             logout:
-                path: /logout
+                path: logout
                 target: /
 
             form_login:
