@@ -7,3 +7,8 @@ easy_admin:
           children:
           - {entity: 'Oeuvres', icon: 'hammer'}
           - {entity: 'Categories', icon: 'list'}
+          - {entity: 'Artiste', icon: 'user-circle'}
+          - {entity: 'Exposition', icon: 'store-alt'}
+
+
+

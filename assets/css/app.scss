@@ -1,14 +1,39 @@
 @import "~bootstrap/scss/bootstrap";
 
-/* Card */
-.card 
+h1, h2, h3, h4, p
 {
-    align-items: center;
+    color:#595959 !important;
 }
 
-h1, h2, p
+// NavBar
+#navbar
 {
-    color:#595959;
+    background-color: #303030 !important;
+}
+.navbar-toggler-icon
+{
+    color: #99ccff !important;
+}
+#collapsibleNavbar
+{
+    justify-content: flex-end;
+}
+.nav-item
+{
+    margin-right: 1rem;
+}
+.nav-link
+{
+    border-bottom: 1px solid #99ccff;
+}
+#dropmenu
+{
+    background-color: #303030 !important;
+    border: none;
+}
+.dropdown-item
+{
+    color: silver !important
 }
 
 main
@@ -18,9 +43,14 @@ main
 
 .album
 {
-    background-color: #F2F2F2;
+    background-color: #303030;
 }
 
+/* Card */
+.card 
+{
+    align-items: center;
+}
 footer
 {
     background-color: #303030;
