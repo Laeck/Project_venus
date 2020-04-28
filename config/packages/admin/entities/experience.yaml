@@ -1,0 +1,13 @@
+easy_admin:
+  entities:
+    Experience:
+        class : App\Entity\Experience
+        form:
+              fields:
+                  - {property: 'titre'}
+                  - {property: 'date'}
+                  - {property: 'description'}
+        list:
+          actions:
+            - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-info'}
+            - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}

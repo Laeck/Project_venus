@@ -1,0 +1,14 @@
+easy_admin:
+  entities:
+    Recompense:
+        class : App\Entity\Recompense
+        form:
+              fields:
+                  - {property: 'nom'}
+                  - {property: 'description'}
+                  - {property: 'date_obtention'}
+                  - {property: 'lieu'}
+        list:
+          actions:
+            - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-info'}
+            - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}

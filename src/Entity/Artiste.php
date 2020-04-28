@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,22 @@ class Artiste
      * @ORM\Column(type="text")
      */
     private $biographie;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Experience", mappedBy="artiste")
+     */
+    private $experiences;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Recompense", mappedBy="artiste")
+     */
+    private $recompenses;
+
+    public function __construct()
+    {
+        $this->experiences = new ArrayCollection();
+        $this->recompenses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,6 +103,68 @@ class Artiste
     public function setBiographie(string $biographie): self
     {
         $this->biographie = $biographie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Experience[]
+     */
+    public function getExperiences(): Collection
+    {
+        return $this->experiences;
+    }
+
+    public function addExperience(Experience $experience): self
+    {
+        if (!$this->experiences->contains($experience)) {
+            $this->experiences[] = $experience;
+            $experience->setArtiste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperience(Experience $experience): self
+    {
+        if ($this->experiences->contains($experience)) {
+            $this->experiences->removeElement($experience);
+            // set the owning side to null (unless already changed)
+            if ($experience->getArtiste() === $this) {
+                $experience->setArtiste(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Recompense[]
+     */
+    public function getRecompenses(): Collection
+    {
+        return $this->recompenses;
+    }
+
+    public function addRecompense(Recompense $recompense): self
+    {
+        if (!$this->recompenses->contains($recompense)) {
+            $this->recompenses[] = $recompense;
+            $recompense->setArtiste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecompense(Recompense $recompense): self
+    {
+        if ($this->recompenses->contains($recompense)) {
+            $this->recompenses->removeElement($recompense);
+            // set the owning side to null (unless already changed)
+            if ($recompense->getArtiste() === $this) {
+                $recompense->setArtiste(null);
+            }
+        }
 
         return $this;
     }

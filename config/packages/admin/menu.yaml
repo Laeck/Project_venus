@@ -8,7 +8,11 @@ easy_admin:
           - {entity: 'Oeuvres', icon: 'hammer'}
           - {entity: 'Categories', icon: 'list'}
           - {entity: 'Artiste', icon: 'user-circle'}
+          - {entity: 'Experience', icon: 'clipboard-list'}
           - {entity: 'Exposition', icon: 'store-alt'}
+          - {entity: 'Recompense', icon: 'trophy'}
+          - {entity: 'Carousel', icon: 'images'}
+
 
 
 
