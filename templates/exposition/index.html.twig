@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ExpositionController!{% endblock %}
+
+{% block body %}
+
+{% for exposition in exposition %}
+    <div class="card-body">
+        <h4 class="card-title">{{ exposition.nom }}  </h4>
+        <h5 class="card-title"> {{ exposition.description }} </h5>
+        <h5 class="card-title"> début le : {{ exposition.date |date("d/m/y") }} </h5>
+        <p class="card-text"> {{ exposition.lieu}} </p>
+    </div>
+{% endfor %}
+
+{% endblock %}

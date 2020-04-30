@@ -7,13 +7,35 @@
 <img src="..." alt="..." />
 
 {% for artiste in artiste %}
-<div class="card" style="width: 18rem;">
     <div class="card-body">
         <h4 class="card-title">{{ artiste.prenom }} {{ artiste.nom }}  </h4>
-        <h5 class="card-title"> né le : {{ artiste.datenaissance |date("d/m/yy") }} </h5>
+        <h5 class="card-title"> né le : {{ artiste.datenaissance |date("d/m/y") }} </h5>
+        <h4 class="card-title"> démarche </h4>
         <p class="card-text"> {{ artiste.biographie }} </p>
     </div>
+{% endfor %}
+
+<div>
+    <h2> Experiences </h2>
 </div>
+{% for experience in experience %}
+    <div class="card-body">
+        <h4 class="card-title">{{ experience.titre }}  </h4>
+        <h5 class="card-title"> début le : {{ experience.date |date("d/m/y") }} </h5>
+        <p class="card-text"> {{ experience.description }} </p>
+    </div>
+{% endfor %}
+
+<div>
+    <h2> Recompenses </h2>
+</div>
+{% for recompense in recompense %}
+    <div class="card-body">
+        <h4 class="card-title">{{ recompense.nom }}  </h4>
+        <h5 class="card-title"> Obtenu le : {{ recompense.dateobtention |date("d/m/y") }} </h5>
+        <p class="card-text"> {{ recompense.description }} </p>
+        <p class="card-text"> {{ recompense.lieu }} </p>
+    </div>
 {% endfor %}
 
 {% endblock %}
