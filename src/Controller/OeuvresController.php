@@ -144,4 +144,5 @@ class OeuvresController extends AbstractController
         return $this->render('oeuvres/categories.html.twig',
         ['oeuvres' => $oeuvres]);
     }
+    
 }

@@ -10,11 +10,10 @@
     </head>
     <body>
     <header>
-    
         {# NAVBAR #}
         <nav class="navbar navbar-expand-md bg-dark navbar-dark" id="navbar">
             <!-- Brand -->
-            <a class="navbar-brand" href="/">Serge BEQUET </a>
+            <a class="navbar-brand" href="/" id="logo">Serge BEQUET </a>
                 <!-- Toggler/collapsibe Button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -38,16 +37,16 @@
                     Galerie
                 </a>
                 <div class="dropdown-menu" id="dropmenu">
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ path('galerie_categorie', {'id': 14 }) }}">
                         Bronzes
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ path('galerie_categorie', {'id': 4 }) }}">
                     Terres cuite
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ path('galerie_categorie', {'id': 3 }) }}">
                         Stéatites
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ path('galerie_categorie', {'id': 2 }) }}">
                         Albâtres
                     </a>
                     <a class="dropdown-item" href="{{ path('oeuvres')}}">
@@ -70,8 +69,10 @@
         </nav>
     </header>
 
+        {# Contenue des page #}
         {% block body %}{% endblock %}
     
+        {# Javascript #}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
             
@@ -80,7 +81,7 @@
         </noscript>
         {% endblock %}
 
-        <!-- Footer  -->
+        {# footer #}
         <footer class="text-center">© 2020 Serge BEQUET-Sculpteur. Tous droits réservés.</footer>
 
     </body>

@@ -1,41 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BiographieController!{% endblock %}
+{% block title 'Biographie' %}
 
 {% block body %}
 
 <img src="..." alt="..." />
 
-{% for artiste in artiste %}
-    <div class="card-body">
-        <h4 class="card-title">{{ artiste.prenom }} {{ artiste.nom }}  </h4>
-        <h5 class="card-title"> né le : {{ artiste.datenaissance |date("d/m/y") }} </h5>
-        <h4 class="card-title"> démarche </h4>
-        <p class="card-text"> {{ artiste.biographie }} </p>
-    </div>
-{% endfor %}
-
-<div>
-    <h2> Experiences </h2>
+<div class="col-12 mb-5 offset-md-1 col-md-10 biographie-card">
+    <h2 class="text-center"> DEMARCHE ARTISTIQUE </h3>
+    {% for artiste in artiste %}
+        <div class="card-body">
+            <h4 class="card-title">{{ artiste.prenom }} {{ artiste.nom }} </h4>
+            <h5 class="card-title">  né le : {{ artiste.datenaissance |date("d/m/y") }} </h5>
+            <p class="card-text text-justify"> {{ artiste.biographie }} </p>
+        </div>
+    {% endfor %}
 </div>
-{% for experience in experience %}
-    <div class="card-body">
-        <h4 class="card-title">{{ experience.titre }}  </h4>
-        <h5 class="card-title"> début le : {{ experience.date |date("d/m/y") }} </h5>
-        <p class="card-text"> {{ experience.description }} </p>
-    </div>
-{% endfor %}
 
-<div>
-    <h2> Recompenses </h2>
+<div class="experience-card pt-1">
+    <h2 class="text-center mt-5 mb-3 card-title-experience"> EXPERIENCES </h2>
+    {% for experience in experience %}
+        <div class="card-body col-12 offset-md-2">
+            <h4 class="card-title-experience">{{ experience.titre }}  </h4>
+            <h5 class="card-title card-text-experience"> début le : {{ experience.date |date("d/m/y") }} </h5>
+            <p class="card-text-experience"> {{ experience.description }} </p>
+        </div>
+    {% endfor %}
 </div>
-{% for recompense in recompense %}
-    <div class="card-body">
-        <h4 class="card-title">{{ recompense.nom }}  </h4>
-        <h5 class="card-title"> Obtenu le : {{ recompense.dateobtention |date("d/m/y") }} </h5>
-        <p class="card-text"> {{ recompense.description }} </p>
-        <p class="card-text"> {{ recompense.lieu }} </p>
+
+<div class="recompense-card mt-5">
+    <h2 class="text-center mb-4"> RECOMPENSES </h2>
+    <div class="container">
+        <div class="row">
+            {% for recompense in recompense %}
+                <div class="card col-12 col-md-3">
+                    <h5 class="card-header">{{ recompense.nom }}</h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ recompense.description }}</p>
+                        <p> Obtenu le : {{ recompense.dateobtention |date("d/m/y") }}</p>
+                        <p> Lieu : {{ recompense.lieu }} </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-{% endfor %}
+</div>
 
 {% endblock %}

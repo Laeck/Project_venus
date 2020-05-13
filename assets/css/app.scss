@@ -1,14 +1,60 @@
 @import "~bootstrap/scss/bootstrap";
 
-h1, h2, h3, h4, h5, p
+@font-face 
 {
+    font-family: 'CormorantGaramond';
+    src: url('../fonts/CormorantGaramond-Light.ttf') format('ttf');
+}
+
+body 
+{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+h2, h3, h4, h5, p
+{
+    font-family: 'CormorantGaramond', serif !important;
     color:#595959 !important;
 }
 
-// NavBar
+h2
+{
+    font-size: 2rem;
+}
+h4
+{
+    font-size: 1.5rem;
+}
+p
+{
+    font-size: 1.2rem;
+}
+
+a
+{
+    font-family: 'CormorantGaramond', serif ;
+    color : white;
+}
+
+.row
+{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+/////////////
+// NavBar //
+////////////
+
 #navbar
 {
     background-color: #303030 !important;
+}
+
+#logo
+{
+    font-family: 'CormorantGaramond', serif ;
+    font-style: italic; 
 }
 .navbar-toggler-icon
 {
@@ -25,6 +71,8 @@ h1, h2, h3, h4, h5, p
 .nav-link
 {
     border-bottom: 1px solid #99ccff;
+    font-size: 1.2rem;
+    font-weight: normal !important;
 }
 #dropmenu
 {
@@ -33,7 +81,8 @@ h1, h2, h3, h4, h5, p
 }
 .dropdown-item
 {
-    color: silver !important
+    color:rgba(255, 255, 255, 0.5) !important;
+    border-bottom: 1px solid #99ccff;
 }
 
 /////////////////////
@@ -44,19 +93,156 @@ main
     background-image: url('../images/background.jpg');
 }
 
+// carousel //
+.carousel-container
+{
+    background-color: black;
+}
+.carousel
+{
+    width: 1100px !important;
+    height: 800px !important;
+}
+.img-carousel
+{
+    background-size: cover !important;
+    width: 1100px !important;
+    height: 800px !important;
+}
+
+// Photo Accueil //
+.photoAccueil
+{
+    width: 100%;
+}
+
+// Card //
 .album
 {
     background-color: #303030;
 }
-
-/* Card */
-.card 
+.title-galerie
+{
+    color:#e6e6e6 !important;
+}
+.card-galerie
 {
     align-items: center;
+    border-radius: 0px !important;
+    background-color: #303030;
+    box-shadow: 12px 12px 2px 1px #242424 !important;
+    border: 1px solid black;
+}
+.police-card-galerie-link
+{
+    color: #e6e6e6;
+}
+.police-card
+{
+    color: #e6e6e6 !important;
+    text-align: center;
+}
+.img-card
+{
+background-size: cover;
+width: 400px;
+height: 400px;
+margin-top: 1rem;
+}
+.expo-container
+{
+    background-color: black;
+}
+#card-expo-container
+{
+    align-items: center;
+    border-radius: 0px !important;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border: 0px;
+}
+.police-card-expo-title
+{
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.police-card-expo-text
+{
+    text-align: center;
+}
+.police-card-expo-link
+{
+    color:#595959;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+////////////////
+// BIOGRAPHIE//
+///////////////
+.experience-card
+{
+    background-color:#303030 ;
+}
+
+.card-title-experience, .card-text-experience
+{
+    color: #e6e6e6 !important;
+}
+
+.card-recompense
+{
+    border: 1px black solid !important;
+}
+
+//////////
+//LOGIN//
+////////
+.login
+{
+    background-color: white;
 }
 footer
 {
     background-color: #303030;
-    color: silver;
+    color: #595959;
     padding: 1.5rem;
+}
+
+////////////////////
+// Media Queries //
+//////////////////
+@media screen and (max-width: 768px) {
+    .carousel-container
+    {
+        display: none;
+    }
+    .img-card
+    {
+        width: 200px !important;
+        height: 200px !important;
+    }
+    .expo-container
+    {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .carousel-container
+    {
+        display: none;
+    }
+    .img-card
+    {
+        width: 250px !important;
+        height: 250px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .photoAccueil
+    {
+        display: none;
+    }
 }
