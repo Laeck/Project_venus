@@ -51,15 +51,20 @@ class Oeuvres
     private $categories;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="oeuvre")
-     */
-    private $images;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      * @var \DateTime|null
      */
     private $date_maj;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Artiste", inversedBy="oeuvres")
+     */
+    private $artiste;
 
     public function __construct()
     {
@@ -119,37 +124,6 @@ class Oeuvres
         return $this;
     }
 
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setOeuvre($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-            // set the owning side to null (unless already changed)
-            if ($image->getOeuvre() === $this) {
-                $image->setOeuvre(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->nom;
@@ -168,5 +142,28 @@ class Oeuvres
         return $this;
     }
 
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getArtiste(): ?Artiste
+    {
+        return $this->artiste;
+    }
+
+    public function setArtiste(?Artiste $artiste): self
+    {
+        $this->artiste = $artiste;
+
+        return $this;
+    }
 
 }

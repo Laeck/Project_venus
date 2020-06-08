@@ -48,10 +48,22 @@ class Artiste
      */
     private $recompenses;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Oeuvres", mappedBy="artiste")
+     */
+    private $oeuvres;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Exposition", mappedBy="artiste")
+     */
+    private $expositions;
+
     public function __construct()
     {
         $this->experiences = new ArrayCollection();
         $this->recompenses = new ArrayCollection();
+        $this->oeuvres = new ArrayCollection();
+        $this->expositions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +175,68 @@ class Artiste
             // set the owning side to null (unless already changed)
             if ($recompense->getArtiste() === $this) {
                 $recompense->setArtiste(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Oeuvres[]
+     */
+    public function getOeuvres(): Collection
+    {
+        return $this->oeuvres;
+    }
+
+    public function addOeuvre(Oeuvres $oeuvre): self
+    {
+        if (!$this->oeuvres->contains($oeuvre)) {
+            $this->oeuvres[] = $oeuvre;
+            $oeuvre->setArtiste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOeuvre(Oeuvres $oeuvre): self
+    {
+        if ($this->oeuvres->contains($oeuvre)) {
+            $this->oeuvres->removeElement($oeuvre);
+            // set the owning side to null (unless already changed)
+            if ($oeuvre->getArtiste() === $this) {
+                $oeuvre->setArtiste(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Exposition[]
+     */
+    public function getExpositions(): Collection
+    {
+        return $this->expositions;
+    }
+
+    public function addExposition(Exposition $exposition): self
+    {
+        if (!$this->expositions->contains($exposition)) {
+            $this->expositions[] = $exposition;
+            $exposition->setArtiste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExposition(Exposition $exposition): self
+    {
+        if ($this->expositions->contains($exposition)) {
+            $this->expositions->removeElement($exposition);
+            // set the owning side to null (unless already changed)
+            if ($exposition->getArtiste() === $this) {
+                $exposition->setArtiste(null);
             }
         }
 

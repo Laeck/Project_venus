@@ -36,6 +36,11 @@ class Exposition
      */
     private $lieu;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Artiste", inversedBy="expositions")
+     */
+    private $artiste;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Exposition
     public function setLieu(?string $lieu): self
     {
         $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    public function getArtiste(): ?Artiste
+    {
+        return $this->artiste;
+    }
+
+    public function setArtiste(?Artiste $artiste): self
+    {
+        $this->artiste = $artiste;
 
         return $this;
     }

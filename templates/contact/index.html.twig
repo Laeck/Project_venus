@@ -4,31 +4,34 @@
 
 {% block body %}
 
-<h2> Vous souhaitez me contacter ?</h2>
+<div class="container text-center">
+    <h2 class="mt-5">- FORMULAIRE DE  CONTACT -</h2>
+</div>
 
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
+<div class="container">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 
-{% if not form.vars.valid %}
-    <div class="alert alert-danger">
-        Le formulaire de contact n'est pas conforme, merci de revoir les champs incomplets 
-    </div>
-{% endif %}
+    {% if not form.vars.valid %}
+        <div class="alert alert-danger">
+            Le formulaire de contact n'est pas conforme, merci de revoir les champs incomplets 
+        </div>
+    {% endif %}
+</div>
 
 <div class="container mb-4 mt-4">
     <div id="contactForm">
         <div class="form-group">
-        {{ form_start(form) }}
-        {{ form_row(form.prenom) }}
-        {{ form_row(form.nom) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.message) }}
-        <button class="btn btn-primary"> Envoyer votre message
-        </button>
-        {{ form_end(form) }}
+            {{ form_start(form) }}
+            {{ form_row(form.prenom) }}
+            {{ form_row(form.nom) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.message) }}
+            <button class="btn btn-primary"> Envoyer votre message</button>
+            {{ form_end(form) }}
         </div>
     </div>
 </div>

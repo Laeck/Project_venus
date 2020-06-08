@@ -1,22 +1,32 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello OeuvresController!{% endblock %}
+{# Template all artworks #}
+{% block title 'Toutes les oeuvres' %}
 
 {% block body %}
 
-    <section class="oeuvres">
+<div class="container text-center">
+    <h2 class="mt-5 mb-5">- GALERIE -</h2>
+</div>
 
-        {% for oeuvre in oeuvres %}
-        <article>
-            <h2> {{ oeuvre.nom }} </h2>
-                <img src="http://placehold.it/350x150" alt="">
-                <div class="metadata"> {{ oeuvre.description | raw}}
+<section class="oeuvres">
+    <div class="album py-5">
+        <div class="container col-xl-12">
+            <div class="row">
+            {% for oeuvres in oeuvres %}
+                <div class="row justify-content-center mb-3 col-12 col-md-6 col-xl-3">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body text-center card-oeuvre">
+                                <h4 class="text-center card-galerie-titre"> {{ oeuvres.nom }} </h4>
+                                <img class="img-galerie" src="{{ asset('build/images/' ~ oeuvres.image) }}" alt="{{ oeuvres.nom }}" width="400" class="img-card"/>
+                                <p class="card-text col-12 text-center text-justify"> {{ oeuvres.description }} </p>
+                                <p class="card-text text-center text-justify"> Oeuvre crée le : {{ oeuvres.datecreation | date('d/m/Y') }} </p>
+                            </div>
+                        </div>
                 </div>
-                <p> crée le {{ oeuvre.datecreation | date('d/m/Y') }} </p>
-
-        </article>
-        {% endfor %}
-
-    </section>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

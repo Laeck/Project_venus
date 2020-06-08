@@ -11,7 +11,7 @@ easy_admin:
           - {entity: 'Experience', icon: 'clipboard-list'}
           - {entity: 'Exposition', icon: 'store-alt'}
           - {entity: 'Recompense', icon: 'trophy'}
-          - {entity: 'Carousel', icon: 'images'}
+
 
 
 

@@ -1,25 +1,33 @@
 {% extends 'base.html.twig' %}
+{# Template Galerie by Id #}
+
+{% block title %} Galerie {% endblock %}
 
 {% block body %}
 
-        {{ dump(oeuvres) }}
+<div class="container text-center">
+    <h2 class="mt-5">- GALERIE -</h2>
+</div>
 
-        {# Partie galerie #}
 <div class="album py-5">
 	<div class="container">
+		<div class="row">
 		{% for oeuvres in oeuvres %}
-		<div class="col-md-6">
-				<div class="card mb-4 shadow-sm">
-					<div class="card-body">
-					<h4> {{ oeuvres.nom }} </h4>
-					<p class="card-text"> {{ oeuvres.description }} </p>
-					<p class="card-text"> Oeuvre crée le : {{ oeuvres.datecreation | date('d/m/Y') }} </p>
-				</div>
+			<div class="row justify-content-center mb-3 col-12 col-md-6">
+					<div class="card mb-4 shadow-sm">
+						<div class="card-body text-center card-oeuvre">
+							<h4 class="text-center card-galerie-titre"> {{ oeuvres.nom }} </h4>
+							<img class="img-card" src="{{ asset('build/images/' ~ oeuvres.image) }}" alt="{{ oeuvres.nom }}" width="400" class="img-card"/>
+							<p class="card-text text-center text-justify col-12"> {{ oeuvres.description }} </p>
+							<p class="card-text text-center text-justify"> Oeuvre crée le : {{ oeuvres.datecreation | date('d/m/Y') }} </p>
+						</div>
+					</div>
 			</div>
 		{% endfor %}
 		</div>
 	</div>
 </div>
+
 
 {% endblock %}
 

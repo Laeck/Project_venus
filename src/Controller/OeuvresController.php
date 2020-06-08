@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categories;
 use App\Entity\Oeuvres;
 use App\Form\OeuvresType;
 
@@ -14,7 +15,41 @@ use Symfony\Component\HttpFoundation\Request;
 
 class OeuvresController extends AbstractController
 {
+    
+    /**
+     * @Route("/oeuvres", name="oeuvres")
+     */
+    public function oeuvresAll(OeuvresRepository $repo)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categorie = $em->getRepository(Categories::class)->findAll();
+        
+        $oeuvres = $repo->findAll();
+    
+        return $this->render('oeuvres/index.html.twig', [
+            'controller_name' => 'OeuvresController',
+            'oeuvres' => $oeuvres, 'categories' => $categorie
+        ]);
+    }
+    
+    /**
+     * @Route("/oeuvres/categories/{id}", name="galerie_categorie")
+     */
+    public function oeuvresByCategoryId ($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $oeuvres = $entityManager->getRepository(Oeuvres::class)->findBy( array(
+            'categories' => $id
+        ));
+    
+        return $this->render('oeuvres/categories.html.twig',
+        ['oeuvres' => $oeuvres]);
+    }
 
+    ///////////
+    // CRUD //
+    /////////
+    
     /**
      * @Route("/oeuvres/creation", name="oeuvres_creation")
      */
@@ -78,7 +113,7 @@ class OeuvresController extends AbstractController
         // ETAPE 2 : Verification si l'ID appartient bien a un Oeuvre
         if (!$oeuvre) {
             throw $this->createNotFoundException(
-                'Pas d\'oeuvre pour cet '.$id
+                'Pas d\'oeuvre pour cet ID'.$id
             );
         }
 
@@ -92,20 +127,6 @@ class OeuvresController extends AbstractController
             'id' => $oeuvre->getId()
         ]);
     }  
-
-    /**
-     * @Route("/oeuvres", name="oeuvres")
-     */
-    public function oeuvresAll(OeuvresRepository $repo)
-    {
-
-        $oeuvres = $repo->findAll();
-
-        return $this->render('oeuvres/index.html.twig', [
-            'controller_name' => 'OeuvresController',
-            'oeuvres' => $oeuvres
-        ]);
-    }
 
     /**
      * @Route("/oeuvres/delete/{id}")
@@ -131,18 +152,5 @@ class OeuvresController extends AbstractController
         return $this->render('oeuvres/deleted.html.twig',  ['oeuvre' => $oeuvre]);
     }
 
-    /**
-     * @Route("/oeuvres/categories/{id}", name="galerie_categorie")
-     */
-    public function oeuvresByCategoryId ($id)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $oeuvres = $entityManager->getRepository(Oeuvres::class)->findBy( array(
-            'categories' => $id
-        ));
-
-        return $this->render('oeuvres/categories.html.twig',
-        ['oeuvres' => $oeuvres]);
-    }
     
 }

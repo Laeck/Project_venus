@@ -4,10 +4,12 @@
 
 {% block body %}
 
-<img src="..." alt="..." />
 
-<div class="col-12 mb-5 offset-md-1 col-md-10 biographie-card">
-    <h2 class="text-center"> DEMARCHE ARTISTIQUE </h3>
+<div class="col-12 mb-5 mt-5 offset-md-1 col-md-10 biographie-card">
+    <h2 class="text-center mb-3">- DEMARCHE ARTISTIQUE -</h2>
+        <div class="container text-center">
+            <img class="img-artiste img-fluid" alt="sergebequet" src="{{ asset('build/images/sergebequet.jpg') }}" />
+        </div>
     {% for artiste in artiste %}
         <div class="card-body">
             <h4 class="card-title">{{ artiste.prenom }} {{ artiste.nom }} </h4>
@@ -18,22 +20,22 @@
 </div>
 
 <div class="experience-card pt-1">
-    <h2 class="text-center mt-5 mb-3 card-title-experience"> EXPERIENCES </h2>
+    <h2 class="text-center mt-5 mb-3 card-title-experience">- EXPERIENCES -</h2>
     {% for experience in experience %}
-        <div class="card-body col-12 offset-md-2">
-            <h4 class="card-title-experience">{{ experience.titre }}  </h4>
-            <h5 class="card-title card-text-experience"> début le : {{ experience.date |date("d/m/y") }} </h5>
-            <p class="card-text-experience"> {{ experience.description }} </p>
+        <div class="card-body col-12 offset-md-2 col-md-8">
+            <h4 class="card-title-experience text-center">{{ experience.titre }}  </h4>
+            <h5 class="card-title card-text-experience text-center"> début le : {{ experience.date |date("d/m/y") }} </h5>
+            <p class="card-text-experience text-center"> {{ experience.description }} </p>
         </div>
     {% endfor %}
 </div>
 
 <div class="recompense-card mt-5">
-    <h2 class="text-center mb-4"> RECOMPENSES </h2>
-    <div class="container">
+    <h2 class="text-center mb-5">- RECOMPENSES -</h2>
+    <div class="container offset-xl-1 col-xl-10">
         <div class="row">
             {% for recompense in recompense %}
-                <div class="card col-12 col-md-3">
+                <div class="row card mb-4 col-12 offset-md-2 col-md-4 col-xl-3">
                     <h5 class="card-header">{{ recompense.nom }}</h5>
                     <div class="card-body">
                         <p class="card-text">{{ recompense.description }}</p>
